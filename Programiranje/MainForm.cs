@@ -64,6 +64,9 @@ namespace Programiranje
             }
         }
 
+        /// <summary>
+        /// shranjevanje podatkov iz spomina v json datoteko
+        /// </summary>
         private void shraniPodatke()
         {
             try
@@ -80,6 +83,7 @@ namespace Programiranje
             }
             catch (Exception ex)
             {
+                // nekaj ni ok
                 MessageBox.Show("Napaka pri shranjevanju podatkov. Tehnični opis napake: "
                     + Environment.NewLine + ex.ToString());
             }
@@ -112,6 +116,7 @@ namespace Programiranje
                 if (txtIme.Text.Trim().Length == 0)
                 {
                     MessageBox.Show("Prosimo, da vnesete ime za osebo.");
+                    return;
                 }
                 // preverimo še datum
                 DateTime? rojDatum = null;
@@ -187,12 +192,14 @@ namespace Programiranje
                 if (telefon == null && osebe[i].ime.Equals(ime, StringComparison.CurrentCultureIgnoreCase)
                     && osebe[i].priimek.Equals(priimek, StringComparison.CurrentCultureIgnoreCase))
                 {
+                    // smo našli po imenu in priimku
                     return true;
                 }
                 else if (osebe[i].telefon.Equals(telefon)
                     && osebe[i].ime.Equals(ime, StringComparison.CurrentCultureIgnoreCase)
                     && osebe[i].priimek.Equals(priimek, StringComparison.CurrentCultureIgnoreCase))
                 {
+                    // ok, smo našli vključno s telefonom
                     return true;
                 }
                 else
@@ -217,6 +224,7 @@ namespace Programiranje
         /// <param name="e"></param>
         private void btnNovZapis_Click(object sender, EventArgs e)
         {
+            // počistimo vnosna polja
             txtIme.Text = "";
             txtPriimek.Text = "";
             txtTelefon.Text = "";
@@ -273,8 +281,11 @@ namespace Programiranje
         {
             // pripravimo nov list, ki bo sortiran
             List<Oseba> items;
+            // poberemo zapise v seznam
             items = lstOsebe.Items.OfType<Oseba>().ToList();
+            // počistimo obstoječe
             lstOsebe.Items.Clear();
+            // izklopimo morebitno prejšnje avtomatsko sortiranje
             lstOsebe.Sorted = false;
             // sortiramo po izbranih kriterijih
             if (sortBy == "Ime")
@@ -376,42 +387,9 @@ namespace Programiranje
             }
         }
 
-        private void btnIskanje_Click(object sender, EventArgs e)
-        {
-
-            
-                DialogResult dialogResult = MessageBox.Show("Ali ste prepričani?", "Brisanje", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.No)
-                {
-                    // preklic
-                    return;
-                }
-
-                // gremo čez osebe in poiščemo pravilno osebo
-                int i = 0;
-                while (i < osebe.Count)
-                {
-                    if (osebe[i].Equals(izbranaOseba))
-                    {
-                        osebe.RemoveAt(i);
-                        break;
-                    }
-                    else
-                    {
-                        i++;
-                    }
-                }
-                // shranimo in ponovno preberemo
-                shraniPodatke();
-                naloziPodatke();
-                // damo možnost vnosa nove osebe
-                btnNovZapis_Click(sender, e);
-            
-
-        }
-
         private void btnNajdi_Click(object sender, EventArgs e)
         {
+            // kaj iščemo?
             string iskanje = txtIskanje.Text;
 
             // gremo čez osebe in poiščemo pravilno osebo
