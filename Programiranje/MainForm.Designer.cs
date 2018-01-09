@@ -29,10 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblSeznamOseb = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbSort = new System.Windows.Forms.ComboBox();
             this.lstOsebe = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnBrisanje = new System.Windows.Forms.Button();
+            this.lblNaslov = new System.Windows.Forms.Label();
             this.btnShrani = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.txtRojDan = new System.Windows.Forms.TextBox();
@@ -45,15 +48,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtIme = new System.Windows.Forms.TextBox();
             this.btnNovZapis = new System.Windows.Forms.Button();
-            this.lblNaslov = new System.Windows.Forms.Label();
-            this.btnBrisanje = new System.Windows.Forms.Button();
-            this.lblSeznamOseb = new System.Windows.Forms.Label();
             this.btnBrisiVse = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnNajdi = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.txtIskanje = new System.Windows.Forms.TextBox();
-            this.btnNajdi = new System.Windows.Forms.Button();
+            this.btnIzpis = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -72,6 +73,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Imenik";
+            // 
+            // lblSeznamOseb
+            // 
+            this.lblSeznamOseb.AutoSize = true;
+            this.lblSeznamOseb.Location = new System.Drawing.Point(11, 25);
+            this.lblSeznamOseb.Name = "lblSeznamOseb";
+            this.lblSeznamOseb.Size = new System.Drawing.Size(74, 13);
+            this.lblSeznamOseb.TabIndex = 3;
+            this.lblSeznamOseb.Text = "Seznam oseb:";
             // 
             // label1
             // 
@@ -130,11 +140,31 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Podatki o osebi";
             // 
+            // btnBrisanje
+            // 
+            this.btnBrisanje.Location = new System.Drawing.Point(12, 192);
+            this.btnBrisanje.Name = "btnBrisanje";
+            this.btnBrisanje.Size = new System.Drawing.Size(130, 32);
+            this.btnBrisanje.TabIndex = 13;
+            this.btnBrisanje.Text = "Brisanje zapisa";
+            this.btnBrisanje.UseVisualStyleBackColor = true;
+            this.btnBrisanje.Visible = false;
+            this.btnBrisanje.Click += new System.EventHandler(this.btnBrisanje_Click);
+            // 
+            // lblNaslov
+            // 
+            this.lblNaslov.AutoSize = true;
+            this.lblNaslov.Location = new System.Drawing.Point(9, 30);
+            this.lblNaslov.Name = "lblNaslov";
+            this.lblNaslov.Size = new System.Drawing.Size(126, 13);
+            this.lblNaslov.TabIndex = 12;
+            this.lblNaslov.Text = "Dodajanje zapisa v bazo:";
+            // 
             // btnShrani
             // 
-            this.btnShrani.Location = new System.Drawing.Point(213, 195);
+            this.btnShrani.Location = new System.Drawing.Point(200, 195);
             this.btnShrani.Name = "btnShrani";
-            this.btnShrani.Size = new System.Drawing.Size(117, 29);
+            this.btnShrani.Size = new System.Drawing.Size(130, 29);
             this.btnShrani.TabIndex = 10;
             this.btnShrani.Text = "Shrani";
             this.btnShrani.UseVisualStyleBackColor = true;
@@ -222,48 +252,19 @@
             // 
             // btnNovZapis
             // 
-            this.btnNovZapis.Location = new System.Drawing.Point(15, 32);
+            this.btnNovZapis.Location = new System.Drawing.Point(13, 34);
             this.btnNovZapis.Name = "btnNovZapis";
-            this.btnNovZapis.Size = new System.Drawing.Size(123, 29);
+            this.btnNovZapis.Size = new System.Drawing.Size(130, 29);
             this.btnNovZapis.TabIndex = 11;
             this.btnNovZapis.Text = "Nov prazen zapis";
             this.btnNovZapis.UseVisualStyleBackColor = true;
             this.btnNovZapis.Click += new System.EventHandler(this.btnNovZapis_Click);
             // 
-            // lblNaslov
-            // 
-            this.lblNaslov.AutoSize = true;
-            this.lblNaslov.Location = new System.Drawing.Point(9, 30);
-            this.lblNaslov.Name = "lblNaslov";
-            this.lblNaslov.Size = new System.Drawing.Size(126, 13);
-            this.lblNaslov.TabIndex = 12;
-            this.lblNaslov.Text = "Dodajanje zapisa v bazo:";
-            // 
-            // btnBrisanje
-            // 
-            this.btnBrisanje.Location = new System.Drawing.Point(14, 195);
-            this.btnBrisanje.Name = "btnBrisanje";
-            this.btnBrisanje.Size = new System.Drawing.Size(122, 32);
-            this.btnBrisanje.TabIndex = 13;
-            this.btnBrisanje.Text = "Brisanje zapisa";
-            this.btnBrisanje.UseVisualStyleBackColor = true;
-            this.btnBrisanje.Visible = false;
-            this.btnBrisanje.Click += new System.EventHandler(this.btnBrisanje_Click);
-            // 
-            // lblSeznamOseb
-            // 
-            this.lblSeznamOseb.AutoSize = true;
-            this.lblSeznamOseb.Location = new System.Drawing.Point(11, 25);
-            this.lblSeznamOseb.Name = "lblSeznamOseb";
-            this.lblSeznamOseb.Size = new System.Drawing.Size(74, 13);
-            this.lblSeznamOseb.TabIndex = 3;
-            this.lblSeznamOseb.Text = "Seznam oseb:";
-            // 
             // btnBrisiVse
             // 
-            this.btnBrisiVse.Location = new System.Drawing.Point(208, 32);
+            this.btnBrisiVse.Location = new System.Drawing.Point(201, 32);
             this.btnBrisiVse.Name = "btnBrisiVse";
-            this.btnBrisiVse.Size = new System.Drawing.Size(123, 32);
+            this.btnBrisiVse.Size = new System.Drawing.Size(130, 32);
             this.btnBrisiVse.TabIndex = 14;
             this.btnBrisiVse.Text = "Brisanje vseh zapisov";
             this.btnBrisiVse.UseVisualStyleBackColor = true;
@@ -271,11 +272,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnIzpis);
             this.groupBox3.Controls.Add(this.btnBrisiVse);
             this.groupBox3.Controls.Add(this.btnNovZapis);
             this.groupBox3.Location = new System.Drawing.Point(360, 265);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(347, 73);
+            this.groupBox3.Size = new System.Drawing.Size(347, 122);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Dodatni ukazi";
@@ -285,17 +287,27 @@
             this.groupBox4.Controls.Add(this.btnNajdi);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.txtIskanje);
-            this.groupBox4.Location = new System.Drawing.Point(361, 354);
+            this.groupBox4.Location = new System.Drawing.Point(361, 393);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(346, 129);
+            this.groupBox4.Size = new System.Drawing.Size(346, 90);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Iskanje";
             // 
+            // btnNajdi
+            // 
+            this.btnNajdi.Location = new System.Drawing.Point(226, 38);
+            this.btnNajdi.Name = "btnNajdi";
+            this.btnNajdi.Size = new System.Drawing.Size(104, 28);
+            this.btnNajdi.TabIndex = 19;
+            this.btnNajdi.Text = "Najdi";
+            this.btnNajdi.UseVisualStyleBackColor = true;
+            this.btnNajdi.Click += new System.EventHandler(this.btnNajdi_Click);
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 49);
+            this.label7.Location = new System.Drawing.Point(11, 27);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(94, 13);
             this.label7.TabIndex = 18;
@@ -303,20 +315,20 @@
             // 
             // txtIskanje
             // 
-            this.txtIskanje.Location = new System.Drawing.Point(12, 65);
+            this.txtIskanje.Location = new System.Drawing.Point(12, 43);
             this.txtIskanje.Name = "txtIskanje";
-            this.txtIskanje.Size = new System.Drawing.Size(178, 20);
+            this.txtIskanje.Size = new System.Drawing.Size(193, 20);
             this.txtIskanje.TabIndex = 17;
             // 
-            // btnNajdi
+            // btnIzpis
             // 
-            this.btnNajdi.Location = new System.Drawing.Point(207, 60);
-            this.btnNajdi.Name = "btnNajdi";
-            this.btnNajdi.Size = new System.Drawing.Size(123, 28);
-            this.btnNajdi.TabIndex = 19;
-            this.btnNajdi.Text = "Najdi";
-            this.btnNajdi.UseVisualStyleBackColor = true;
-            this.btnNajdi.Click += new System.EventHandler(this.btnNajdi_Click);
+            this.btnIzpis.Location = new System.Drawing.Point(201, 84);
+            this.btnIzpis.Name = "btnIzpis";
+            this.btnIzpis.Size = new System.Drawing.Size(130, 32);
+            this.btnIzpis.TabIndex = 15;
+            this.btnIzpis.Text = "Izpis vseh zapisov";
+            this.btnIzpis.UseVisualStyleBackColor = true;
+            this.btnIzpis.Click += new System.EventHandler(this.btnIzpis_Click);
             // 
             // MainForm
             // 
@@ -368,6 +380,7 @@
         private System.Windows.Forms.Button btnNajdi;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtIskanje;
+        private System.Windows.Forms.Button btnIzpis;
     }
 }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web;
 using System.Web.Script.Serialization;
 using System.IO;
 
@@ -416,6 +417,66 @@ namespace Programiranje
             // zgleda nismo našli nič
             MessageBox.Show("Nisem našel iskane osebe. Prosimo, preverite vhodne parametre.");
         }
+
+        // izpis oz. tiskanje vse zapisov
+        private void btnIzpis_Click(object sender, EventArgs e)
+        {
+            // spravimo osebe v html string
+            string htmlString = seznamOsebToHtml(osebe, x => x.priimek, x => x.ime, x => x.email, x => x.telefon);
+            // izvozimo v našo mapo, dodamo html extension
+            string htmlFile = potDoDatoteke() + ".html";
+            // zapišemo v datoteko
+            File.WriteAllText(htmlFile, htmlString);
+
+            MessageBox.Show("Izvoz podatkov za tiskanje je pripravljen. " + 
+            "Odprl ga bom v privzetem programu za html dokumente, kjer ga lahko natisnete (Ctrl+P).");
+
+            // kličemo sistemsko fukncijo za odpiranje datoteke
+            System.Diagnostics.Process.Start(htmlFile);
+
+        }
+
+        /// <summary>
+        /// izvozimo seznam oseb v html obliko
+        /// </summary>
+        /// <param name="list">seznam oseb</param>
+        /// <param name="fxns">stolpci oz atributi, ki jih vključimo</param>
+        /// <returns></returns>
+        private string seznamOsebToHtml(IEnumerable<Oseba> list, params Func<Oseba,object>[] fxns)
+        {
+            // sb za izvoz podatkov
+            StringBuilder sb = new StringBuilder();
+            
+            // pripravimo glavo dokumenta
+            sb.Append("<!DOCTYPE html>");
+            sb.Append("<html>");
+            sb.Append("<head><meta charset='utf-8'><title>Izvoz podatkov</title></head>");
+            sb.Append("<body>");
+            sb.Append("<h1>Izvoz podatkov</h1>");
+
+            // naredimo tabelo s podatki
+            sb.Append("<table>");
+            foreach (var item in list)
+            {
+                sb.Append("<tr>\n");
+                // gremo čez posamezne stolpce
+                foreach (var fxn in fxns)
+                {
+                    // kodiramo posebne znake za html izvoz (<, >, ...)
+                    sb.AppendFormat("<td>{0}</td>", HttpUtility.HtmlEncode(fxn(item)));
+                }
+                sb.Append("</tr>\n");
+            }
+            sb.Append("</table>");
+
+            // zaključimo dokument
+            sb.Append("</body>");
+            sb.Append("</html>");
+
+            // vrnemo string
+            return sb.ToString();
+        }
+
     }
 
 
